@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedLeaf</title>
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='feedback.css') }}">
+</head>
+
+<body>
+    <!-- <div id="video-container">
+        <video autoplay muted loop>
+            <source src="{{ url_for('static', filename='back-vid.mp4') }}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div> -->
+
+    <ul class="nav-links">
+        <div class="logo-main">
+            <img src="{{ url_for('static', filename='favicon.ico') }}" alt="logo">
+            <h1 class="logo">MedLeaf</h1>
+        </div>
+        <li class="forward"><a href="/">Home</a></li>
+        <li class="forward"><a href="/identify">Identify Leaf</a></li>
+        <li class="forward"><a href="/search">Search Uses</a></li>
+        <li><a href="/feedback">Feedback</a></li>
+
+    </ul>
+
+
+    <div class="wrapper">
+        <div class="c">
+            {% if success %}
+            <p class="success-message">Feedback submitted successfully! Thank you for your valuable feedback.</p>
+
+            {% else %}
+            <form action="/feedback" method="POST">
+                <div class="imgfeed">
+                    <img src="{{ url_for('static', filename='feed.jpg') }}" alt="Uploaded Image"
+                        style="height: 450px; width: 600px; margin-left: 12%;">
+                </div>
+                <div class="feedmain" style="margin-right: 5%;">
+                    <p>Tell your experience</p>
+                    <div class="content">We highly value your feedback! Kindly take a moment to rate your experience and
+                        provide us with your valuable feedback.</div> <br><br>
+
+                    <input type="text" name="full_name" id="name" placeholder="Enter Your Name" required> <br><br>
+                    <textarea cols="30" rows="6" placeholder="Tell us about your experience!" name="feedback_text"
+                        required></textarea>
+                    <button class="submit-btn">Send</button>
+                </div>
+            </form>
+            {% endif %}
+        </div>
+    </div>
+</body>
+
+</html>

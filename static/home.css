@@ -1,0 +1,76 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links {
+    list-style: none;
+    background: #333;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-links li {
+    display: inline;
+    margin-right: 20px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+.logo {
+    font-size: 24px;
+    margin: 0;
+    color: white;
+}
+
+.home-container {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+#imghome {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.welcome-heading {
+    color: #333;
+}
+
+.description, .get-started, .explore {
+    color: #555;
+}
+
+.about-us, .how-to-use {
+    margin-top: 40px;
+}
+
+.about-us h2, .how-to-use h2 {
+    color: #333;
+}
+
+.about-us p, .how-to-use p {
+    color: #555;
+}
+
+.footer {
+    background: #333;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedLeaf</title>
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+        #video-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <div id="video-container">
+        <video autoplay muted loop>
+            <source src="{{ url_for('static', filename='back-vid.mp4') }}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div> -->
+
+    <ul class="nav-links">
+        <div class="logo-main">
+            <img src="{{ url_for('static', filename='favicon.ico') }}" alt="logo">
+            <h1 class="logo">MedLeaf</h1>
+        </div>
+        <li class="forward"><a href="/">Home</a></li>
+        <li class="forward"><a href="/identify">Identify Leaf</a></li>
+        <li class="forward"><a href="/search">Search Uses</a></li>
+        <li><a href="/feedback">Feedback</a></li>
+
+    </ul>
+
+    <div id="container" class="home-container">
+        <img src="{{ url_for('static', filename='logo.jpg') }}" alt="Uploaded Image" id="imghome">
+        <div class="home-text">
+            <p class="welcome-heading">MedLeaf - Plant Identification</p>
+
+            <p class="description">
+                Identify Medicinal Leaf By Uploading Leaf Image
+            </p>
+            <p class="get-started">To get started, click on "Identify Leaf" in the navigation menu.
+            </p>
+            <!-- <p class="description">MedLeaf is a platform that uses deep learning to identify medicinal leaves. You can
+                upload an image of a leaf, and the system will predict its species and provide information about its
+                uses.
+            </p>
+            
+            <p class="explore">Explore the rich world of medicinal plants and their applications!</p> -->
+        </div>
+
+        <div class="features">
+            <div class="img-feature">
+                <img src="{{ url_for('static', filename='feature.jpg') }}" alt="Uploaded Image" id="imgfeature">
+            </div>
+            <div class="text-feature">
+                <h4 class="feature-head">Awesome Features</h4>
+                <h1 class="heading-main">Medicinal Plant Identifier and search Uses</h1>
+                <p class="smalltext">MedLeaf is a platform that uses deep learning to identify medicinal leaves. You can
+                    upload an image of a leaf, and the system will predict its species and provide information about its
+                    uses.</p>
+                <ul>
+                    <li class="li-feature"><i class="fa fa-upload" aria-hidden="true" style=" margin-right: 10px;"></i>
+                        Upload A
+                        Plant
+                    </li>
+                    <p class="ptext">About 80
+                        species</p>
+                    <li class="li-feature"><i class="fa fa-info-circle" style=" margin-right: 10px;"></i> See Info About
+                        The Plant </li>
+                    <p class="ptext">Common
+                        names , Botonical name, Uses</p>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

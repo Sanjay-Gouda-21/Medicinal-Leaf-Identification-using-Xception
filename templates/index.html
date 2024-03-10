@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedLeaf</title>
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+
+    <style>
+        #video-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- <div id="video-container">
+        <video autoplay muted loop>
+            <source src="{{ url_for('static', filename='back-vid.mp4') }}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div> -->
+
+    <ul class="nav-links">
+        <div class="logo-main">
+            <img src="{{ url_for('static', filename='favicon.ico') }}" alt="logo">
+            <h1 class="logo">MedLeaf</h1>
+        </div>
+        <li class="forward"><a href="/">Home</a></li>
+        <li class="forward"><a href="/identify">Identify Leaf</a></li>
+        <li class="forward"><a href="/search">Search Uses</a></li>
+        <li><a href="/feedback">Feedback</a></li>
+
+    </ul>
+
+
+    <div class="container-indetify">
+
+        <form method="post" enctype="multipart/form-data" class="main-form">
+
+            <img src="{{ url_for('static', filename='bg-1.png') }}" alt="Uploaded Image" id="up-img">
+
+            <div class="up-right">
+                <p id="h1-index">Upload the Plant Leaf</p> <br>
+                <!-- <img src="{{ url_for('static', filename='uplod-img.png') }}" alt="Uploaded Image"> -->
+                <p id="drag">Drap and Drop or Choose Your Image</p>
+                <p id="file-s">File Supported PNG | JPG | JPEG </p> <br>
+
+
+
+                <label for="fileInput" class="custom-file-upload">+ Select Image</label>
+                <input type="file" name="file" accept=".jpg, .jpeg, .png, .gif" id="fileInput">
+                <span id="fileNameDisplay"></span>
+            </div>
+            <input type="submit" value="Submit and Predict" id="predictButton" style="display:none;">
+        </form>
+
+        <div class="main-pred">
+            {% if prediction %}
+            <img src="{{ url_for('static', filename='uploads/' + file_path) }}" alt="Uploaded Image" id="predimage">
+            <div id="y">
+                <p id="plant_name"><b>Plant Name:</b> {{ prediction }} </p>
+                <!-- <p><b>Prediction Rate:</b>{{ confidence }}</p> -->
+                <p id="botanical_name"><b>Botanical Name:</b> {{ uses['Botanical Name'] }}</p>
+                <p id="common_names"><b>Common Names: </b>{{ ", ".join(uses['Common Names']) }}</p>
+                <p id="introduction"><b>Introduction:</b> {{ uses['Introduction'] }}</p>
+
+                <b>Uses:</b>
+                <ul>
+                    {% for use in uses['Uses'] %}
+                    <li>{{ use }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+
+            {% if error %}
+            <p class="error-message">{{ error
+                }}</p>
+            {% endif %}
+
+        </div>
+        <!-- <script>
+            document.getElementById("fileInput").addEventListener("change",function() {
+                var predictButton=document.getElementById("predictButton");
+                if(this.value!=="") {
+                    predictButton.style.display="block";
+                    fileNameDisplay.innerText=this.files[0].name;
+                } else {
+                    predictButton.style.display="none";
+                    fileNameDisplay.innerText="";
+                }
+            });
+        </script> -->
+        <script>
+            document.getElementById("fileInput").addEventListener("change",function() {
+                var predictButton=document.getElementById("predictButton");
+                if(this.value!=="") {
+                    var fileName=this.files[0].name;
+                    var fileExtension=fileName.split('.').pop().toLowerCase();
+                    if(['jpg','jpeg','png','gif'].indexOf(fileExtension)===-1) {
+                        alert("Unsupported file format. Please upload a file with one of the following extensions: jpg, jpeg, png, gif");
+                        this.value=''; // Clear the file input
+                        fileNameDisplay.innerText="";
+                        predictButton.style.display="none";
+                    } else {
+                        predictButton.style.display="block";
+                        fileNameDisplay.innerText=fileName;
+                    }
+                } else {
+                    predictButton.style.display="none";
+                    fileNameDisplay.innerText="";
+                }
+            });
+        </script>
+
+
+</body>
+
+</html>
